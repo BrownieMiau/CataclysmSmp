@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:llama_spawn_egg"
+    },
+    "title": {
+      "translate": false,
+      "text": "Viracocha"
+    },
+    "description": {
+      "translate": false,
+      "text": "Cría una llama en las tierras del Nether"
+    },
+    "frame": "TASK",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "impossible"
+    ]
+  ],
+  "parent": "cataclysm:the_nether/root"
+}

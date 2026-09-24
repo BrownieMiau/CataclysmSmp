@@ -35,6 +35,7 @@ import org.cataclysm.game.mob.task.MobTask;
 import org.cataclysm.game.player.CataclysmPlayer;
 import org.cataclysm.game.player.PlayerTask;
 import org.cataclysm.game.player.data.PlayerLoader;
+import org.cataclysm.game.player.survival.advancement.AdvancementLoader;
 import org.cataclysm.game.player.survival.death.DeathSequence;
 import org.cataclysm.game.world.generator.CataclysmGenerator;
 import org.cataclysm.game.world.ragnarok.Ragnarok;
@@ -122,6 +123,9 @@ public final class Cataclysm extends JavaPlugin {
         }
 
         RegistrableUtils.registerListeners();
+        // Paper no registra automaticamente los /advancements de un paper-plugin,
+        // y Shadow puede ocultarlos al classloader: los cargamos desde el jar.
+        AdvancementLoader.loadAll();
         CataclysmRecipes.updateRecipes();
 
         new PlayerTask().startTickTask(20);
