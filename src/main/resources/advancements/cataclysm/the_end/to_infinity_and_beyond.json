@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "minecraft:elytra"
+      "item": "minecraft:elytra"
     },
     "title": {
       "text": "Hasta el Infinito y Más Allá"

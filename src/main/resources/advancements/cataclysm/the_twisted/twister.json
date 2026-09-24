@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "minecraft:rotten_flesh"
+      "item": "minecraft:rotten_flesh"
     },
     "title": {
       "text": "Twister"

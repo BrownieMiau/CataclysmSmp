@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "minecraft:shears"
+      "item": "minecraft:shears"
     },
     "title": {
       "text": "Cacaclysm"

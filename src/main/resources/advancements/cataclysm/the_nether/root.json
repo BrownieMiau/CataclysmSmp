@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "minecraft:obsidian"
+      "item": "minecraft:obsidian"
     },
     "title": {
       "text": "El Nether"
@@ -10,8 +10,8 @@
       "text": "Cruza el umbral hacia el infierno"
     },
     "frame": "task",
-    "show_toast": true,
-    "announce_to_chat": true,
+    "show_toast": false,
+    "announce_to_chat": false,
     "background": "minecraft:textures/block/netherrack.png",
     "root": true
   },
@@ -25,7 +25,5 @@
       "impossible"
     ]
   ],
-  "background": "minecraft:textures/block/deepslate_tiles.png",
-  "root": true,
   "parent": "cataclysm:root"
 }

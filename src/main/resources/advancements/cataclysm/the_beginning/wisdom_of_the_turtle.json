@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "minecraft:turtle_helmet"
+      "item": "minecraft:turtle_helmet"
     },
     "title": {
       "text": "Sabiduría de la Tortuga"

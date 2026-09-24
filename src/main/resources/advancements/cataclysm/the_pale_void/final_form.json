@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "minecraft:netherite_helmet"
+      "item": "minecraft:netherite_helmet"
     },
     "title": {
       "text": "Forma Final"

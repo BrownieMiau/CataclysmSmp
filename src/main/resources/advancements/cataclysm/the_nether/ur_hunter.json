@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "minecraft:ghast_tear"
+      "item": "minecraft:ghast_tear"
     },
     "title": {
       "text": "Cazador de Urs"

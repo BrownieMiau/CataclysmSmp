@@ -86,6 +86,38 @@ shadowJar {
 build.dependsOn shadowJar
 assemble.dependsOn reobfJar
 
+// ---------------------------------------------------------------------------
+// Datapack de advancements.
+// Paper 1.21.5 NO tiene API para registrar advancements desde un plugin
+// (Advancement.builder solo existe en 1.21.6+), por lo que los JSON de
+// src/main/resources/advancements/cataclysm/ se empaquetan aqui como un
+// datapack zip. Instalalo en <mundo>/datapacks/ del servidor.
+// Salida: build/libs/Cataclysm-Advancements.zip
+// ---------------------------------------------------------------------------
+def datapackDir = layout.buildDirectory.dir('datapack')
+
+tasks.register('datapackFiles', Copy) {
+    from('src/main/resources/datapack/pack.mcmeta') {
+        into '.'
+    }
+    from('src/main/resources/advancements') {
+        into 'data'
+    }
+    into datapackDir
+}
+
+tasks.register('cataclysmDatapack', Zip) {
+    group = 'distribution'
+    description = 'Empaqueta los advancements de Cataclysm como datapack zip.'
+    from(datapackDir)
+    archiveBaseName = 'Cataclysm-Advancements'
+    archiveVersion = ''
+    destinationDirectory = layout.buildDirectory.dir('libs')
+    dependsOn 'datapackFiles'
+}
+
+build.dependsOn cataclysmDatapack
+
 tasks.runServer {
     minecraftVersion("1.21.5")
 }

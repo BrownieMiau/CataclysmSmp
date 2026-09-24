@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "minecraft:book"
+      "item": "minecraft:book"
     },
     "title": {
       "text": "Cataclysm"

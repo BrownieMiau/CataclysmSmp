@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "minecraft:scute"
+      "item": "minecraft:scute"
     },
     "title": {
       "text": "Aguanta la Respiración"

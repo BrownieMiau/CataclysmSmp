@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "minecraft:warped_fungus"
+      "item": "minecraft:warped_fungus"
     },
     "title": {
       "text": "Los Retorcidos"
@@ -10,9 +10,9 @@
       "text": "Adéntrate en las tierras retorcidas"
     },
     "frame": "task",
-    "show_toast": true,
-    "announce_to_chat": true,
-    "background": "minecraft:textures/block/deepslate_tiles.png",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "background": "minecraft:textures/block/obsidian.png",
     "root": true
   },
   "criteria": {
@@ -25,7 +25,5 @@
       "impossible"
     ]
   ],
-  "background": "minecraft:textures/block/deepslate_tiles.png",
-  "root": true,
   "parent": "cataclysm:root"
 }

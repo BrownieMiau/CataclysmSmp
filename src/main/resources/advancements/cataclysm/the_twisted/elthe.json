@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "minecraft:arcane_forge"
+      "item": "minecraft:arcane_forge"
     },
     "title": {
       "text": "Elthe"

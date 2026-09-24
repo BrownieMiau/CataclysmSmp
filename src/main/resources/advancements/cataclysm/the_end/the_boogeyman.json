@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "minecraft:player_head"
+      "item": "minecraft:player_head"
     },
     "title": {
       "text": "El Coco"
