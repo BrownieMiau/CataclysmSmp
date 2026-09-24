@@ -4,14 +4,12 @@
       "id": "minecraft:netherite_chestplate"
     },
     "title": {
-      "translate": false,
       "text": "Calamidad"
     },
     "description": {
-      "translate": false,
       "text": "Reúne el set completo de armadura de calamidad"
     },
-    "frame": "TASK",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true
   },

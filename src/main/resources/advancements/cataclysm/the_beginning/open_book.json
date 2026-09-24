@@ -4,14 +4,12 @@
       "id": "minecraft:writable_book"
     },
     "title": {
-      "translate": false,
       "text": "Un Libro Abierto"
     },
     "description": {
-      "translate": false,
       "text": "Descubre un libro olvidado en un templo"
     },
-    "frame": "TASK",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true
   },

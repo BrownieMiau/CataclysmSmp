@@ -47,13 +47,15 @@ public final class AdvancementLoader {
 
         // Registro en dos pasadas para respetar dependencias parent -> hijo.
         List<JsonObject> pending = new ArrayList<>();
-        int registered = 0;
+        int registered = 0, already = 0;
         for (String path : files) {
             try (InputStream in = plugin.getResource(path)) {
                 if (in == null) continue;
                 JsonObject json = JsonParser.parseReader(
                         new InputStreamReader(in, StandardCharsets.UTF_8)).getAsJsonObject();
                 json.addProperty("$file", path);
+                NamespacedKey key = keyOfPath(path);
+                if (Bukkit.getAdvancement(key) != null) { already++; continue; }
                 if (hasParentLoaded(json)) {
                     if (register(json)) registered++;
                 } else {
@@ -82,7 +84,45 @@ public final class AdvancementLoader {
         }
 
         Bukkit.getLogger().info("[Cataclysm] Advancements cargados desde el jar: " + registered
-                + "/" + files.size());
+                + " nuevos, " + already + " ya existentes, " + files.size() + " JSON leidos.");
+    }
+
+    /**
+     * Asegura que un advancement concreto exista registrado. Se usa como red de seguridad
+     * cuando grant() no encuentra la key (p. ej. world antiguo con data/advancements
+     * corrupto o registro parcial). Devuelve el advancement ya presente o el recien creado.
+     */
+    public static Advancement ensureRegistered(NamespacedKey key) {
+        if (key == null || !NAMESPACE.equals(key.getNamespace())) return null;
+        Advancement existing = Bukkit.getAdvancement(key);
+        if (existing != null) return existing;
+
+        String path = RESOURCE_ROOT + "/" + key.getKey() + ".json";
+        Plugin plugin = Cataclysm.getInstance();
+        JsonObject json;
+        try (InputStream in = plugin.getResource(path)) {
+            if (in == null) return null;
+            json = JsonParser.parseReader(
+                    new InputStreamReader(in, StandardCharsets.UTF_8)).getAsJsonObject();
+        } catch (Exception e) {
+            return null;
+        }
+
+        // Primero el parent (recursivo, con guarda anti-bucle corta por profundidad de ruta).
+        if (json.has("parent")) {
+            NamespacedKey parentKey = keyFromPath(json.get("parent").getAsString());
+            if (parentKey != null && Bukkit.getAdvancement(parentKey) == null) {
+                ensureRegistered(parentKey);
+            }
+        }
+        json.addProperty("$file", path);
+        register(json);
+        return Bukkit.getAdvancement(key);
+    }
+
+    private static NamespacedKey keyOfPath(String resourcePath) {
+        String keyPath = resourcePath.substring(RESOURCE_ROOT.length() + 1).replaceAll("\\.json$", "");
+        return new NamespacedKey(NAMESPACE, keyPath);
     }
 
     private static boolean hasParentLoaded(JsonObject json) {

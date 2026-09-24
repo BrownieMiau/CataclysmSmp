@@ -4,14 +4,12 @@
       "id": "minecraft:blaze_powder"
     },
     "title": {
-      "translate": false,
       "text": "A Mitad de Camino"
     },
     "description": {
-      "translate": false,
       "text": "Fabrica una reliquia del Nether"
     },
-    "frame": "TASK",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true
   },

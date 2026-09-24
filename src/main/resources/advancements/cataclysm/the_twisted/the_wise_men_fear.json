@@ -4,14 +4,12 @@
       "id": "minecraft:end_portal_frame"
     },
     "title": {
-      "translate": false,
       "text": "Lo Que los Sabios Temen"
     },
     "description": {
-      "translate": false,
       "text": "Completa el desafío del Monolito"
     },
-    "frame": "CHALLENGE",
+    "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true
   },

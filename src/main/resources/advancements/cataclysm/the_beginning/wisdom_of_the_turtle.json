@@ -4,14 +4,12 @@
       "id": "minecraft:turtle_helmet"
     },
     "title": {
-      "translate": false,
       "text": "Sabiduría de la Tortuga"
     },
     "description": {
-      "translate": false,
       "text": "Mejora tu Lemegeton 4 veces"
     },
-    "frame": "TASK",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true
   },

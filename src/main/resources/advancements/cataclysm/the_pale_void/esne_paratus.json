@@ -4,14 +4,12 @@
       "id": "minecraft:gray_dye"
     },
     "title": {
-      "translate": false,
       "text": "Esne Paratus"
     },
     "description": {
-      "translate": false,
       "text": "Prepárate para lo inevitable"
     },
-    "frame": "TASK",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true
   },

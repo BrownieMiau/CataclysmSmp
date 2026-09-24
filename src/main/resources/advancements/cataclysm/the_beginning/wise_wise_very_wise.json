@@ -4,14 +4,12 @@
       "id": "minecraft:experience_bottle"
     },
     "title": {
-      "translate": false,
       "text": "Sabio, Sabio, Muy Sabio"
     },
     "description": {
-      "translate": false,
       "text": "Mejora tu Lemegeton 2 veces"
     },
-    "frame": "TASK",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true
   },

@@ -4,14 +4,12 @@
       "id": "minecraft:enchanted_book"
     },
     "title": {
-      "translate": false,
       "text": "El Poder de un Dios"
     },
     "description": {
-      "translate": false,
       "text": "Fabrica la Bendición del Paragón"
     },
-    "frame": "TASK",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true
   },

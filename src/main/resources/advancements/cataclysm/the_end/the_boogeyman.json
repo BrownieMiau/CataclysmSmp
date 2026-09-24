@@ -4,14 +4,12 @@
       "id": "minecraft:player_head"
     },
     "title": {
-      "translate": false,
       "text": "El Coco"
     },
     "description": {
-      "translate": false,
       "text": "Consigue una cabeza misteriosa"
     },
-    "frame": "TASK",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true
   },

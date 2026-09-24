@@ -4,14 +4,12 @@
       "id": "minecraft:llama_spawn_egg"
     },
     "title": {
-      "translate": false,
       "text": "Viracocha"
     },
     "description": {
-      "translate": false,
       "text": "Cría una llama en las tierras del Nether"
     },
-    "frame": "TASK",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true
   },

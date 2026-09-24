@@ -4,14 +4,12 @@
       "id": "minecraft:name_tag"
     },
     "title": {
-      "translate": false,
       "text": "Compañeros"
     },
     "description": {
-      "translate": false,
       "text": "Reúne a tu escuadrón"
     },
-    "frame": "CHALLENGE",
+    "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true
   },

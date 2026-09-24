@@ -4,14 +4,12 @@
       "id": "minecraft:shears"
     },
     "title": {
-      "translate": false,
       "text": "Cacaclysm"
     },
     "description": {
-      "translate": false,
       "text": "Rasura a todos los tipos de Bogged"
     },
-    "frame": "CHALLENGE",
+    "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true
   },

@@ -4,14 +4,12 @@
       "id": "minecraft:netherite_helmet"
     },
     "title": {
-      "translate": false,
       "text": "Forma Final"
     },
     "description": {
-      "translate": false,
       "text": "Reúne el set completo de armadura pálida"
     },
-    "frame": "CHALLENGE",
+    "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true
   },

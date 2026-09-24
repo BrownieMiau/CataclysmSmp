@@ -4,14 +4,12 @@
       "id": "minecraft:beacon"
     },
     "title": {
-      "translate": false,
       "text": "Inmortal"
     },
     "description": {
-      "translate": false,
       "text": "Desafía a la muerte misma"
     },
-    "frame": "CHALLENGE",
+    "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true
   },

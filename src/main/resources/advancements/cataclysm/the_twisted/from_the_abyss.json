@@ -4,14 +4,12 @@
       "id": "minecraft:recovery_compass"
     },
     "title": {
-      "translate": false,
       "text": "Desde el Abismo"
     },
     "description": {
-      "translate": false,
       "text": "Fabrica una reliquia retorcida"
     },
-    "frame": "TASK",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true
   },

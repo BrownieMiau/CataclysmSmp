@@ -4,16 +4,16 @@
       "id": "minecraft:book"
     },
     "title": {
-      "translate": false,
       "text": "Cataclysm"
     },
     "description": {
-      "translate": false,
       "text": "Bienvenido a Cataclysm"
     },
-    "frame": "TASK",
+    "frame": "task",
     "show_toast": true,
-    "announce_to_chat": true
+    "announce_to_chat": true,
+    "root": true,
+    "background": "minecraft:textures/block/bookshelf.png"
   },
   "criteria": {
     "impossible": {
