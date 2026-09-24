@@ -4,14 +4,12 @@
       "id": "minecraft:blaze_rod"
     },
     "title": {
-      "translate": false,
       "text": "Calamidad Sin Nerf"
     },
     "description": {
-      "translate": false,
       "text": "Mata 30 Calamity Blazes sin usar arco"
     },
-    "frame": "CHALLENGE",
+    "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true
   },

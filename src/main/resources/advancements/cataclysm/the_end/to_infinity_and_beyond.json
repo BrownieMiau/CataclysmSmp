@@ -4,14 +4,12 @@
       "id": "minecraft:elytra"
     },
     "title": {
-      "translate": false,
       "text": "Hasta el Infinito y Más Allá"
     },
     "description": {
-      "translate": false,
       "text": "Obtén las Élitros del Espejismo"
     },
-    "frame": "CHALLENGE",
+    "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true
   },

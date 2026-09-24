@@ -4,14 +4,12 @@
       "id": "minecraft:compass"
     },
     "title": {
-      "translate": false,
       "text": "Corredor del Laberinto"
     },
     "description": {
-      "translate": false,
       "text": "Entra en el laberinto del End"
     },
-    "frame": "TASK",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true
   },

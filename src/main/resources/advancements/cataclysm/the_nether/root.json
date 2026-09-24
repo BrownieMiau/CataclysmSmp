@@ -4,16 +4,16 @@
       "id": "minecraft:obsidian"
     },
     "title": {
-      "translate": false,
       "text": "El Nether"
     },
     "description": {
-      "translate": false,
       "text": "Cruza el umbral hacia el infierno"
     },
-    "frame": "TASK",
+    "frame": "task",
     "show_toast": true,
-    "announce_to_chat": true
+    "announce_to_chat": true,
+    "background": "minecraft:textures/block/netherrack.png",
+    "root": true
   },
   "criteria": {
     "impossible": {
@@ -26,5 +26,6 @@
     ]
   ],
   "background": "minecraft:textures/block/deepslate_tiles.png",
-  "root": true
+  "root": true,
+  "parent": "cataclysm:root"
 }

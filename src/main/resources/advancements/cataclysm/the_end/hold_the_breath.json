@@ -4,14 +4,12 @@
       "id": "minecraft:scute"
     },
     "title": {
-      "translate": false,
       "text": "Aguanta la Respiración"
     },
     "description": {
-      "translate": false,
       "text": "Sobrevive bajo las aguas del vacío"
     },
-    "frame": "CHALLENGE",
+    "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true
   },

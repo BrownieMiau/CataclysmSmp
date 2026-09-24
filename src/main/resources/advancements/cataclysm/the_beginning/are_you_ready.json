@@ -4,14 +4,12 @@
       "id": "minecraft:torch"
     },
     "title": {
-      "translate": false,
       "text": "¿Estás Listo?"
     },
     "description": {
-      "translate": false,
       "text": "Sobrevive tu primer día en el mundo"
     },
-    "frame": "TASK",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true
   },

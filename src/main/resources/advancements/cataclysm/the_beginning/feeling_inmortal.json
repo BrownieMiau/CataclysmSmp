@@ -4,14 +4,12 @@
       "id": "minecraft:totem_of_undying"
     },
     "title": {
-      "translate": false,
       "text": "Sintiéndome Inmortal"
     },
     "description": {
-      "translate": false,
       "text": "Usa la Bendición del Paragón"
     },
-    "frame": "CHALLENGE",
+    "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true
   },

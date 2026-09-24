@@ -4,14 +4,12 @@
       "id": "minecraft:diamond_pickaxe"
     },
     "title": {
-      "translate": false,
       "text": "Te Sientes Retorcido"
     },
     "description": {
-      "translate": false,
       "text": "Reúne el set completo de herramientas retorcidas"
     },
-    "frame": "TASK",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true
   },

@@ -4,14 +4,12 @@
       "id": "minecraft:turtle_spawn_egg"
     },
     "title": {
-      "translate": false,
       "text": "Kame Guy"
     },
     "description": {
-      "translate": false,
       "text": "Mejora tu Lemegeton 6 veces"
     },
-    "frame": "CHALLENGE",
+    "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true
   },

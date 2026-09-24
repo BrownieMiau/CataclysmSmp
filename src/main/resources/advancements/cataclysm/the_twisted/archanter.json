@@ -4,14 +4,12 @@
       "id": "minecraft:enchanting_table"
     },
     "title": {
-      "translate": false,
       "text": "Arcanter"
     },
     "description": {
-      "translate": false,
       "text": "Obtén un objeto de una mesa arcana"
     },
-    "frame": "TASK",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true
   },

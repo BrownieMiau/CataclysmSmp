@@ -4,14 +4,12 @@
       "id": "minecraft:chest"
     },
     "title": {
-      "translate": false,
       "text": "La Avaricia Es Buena"
     },
     "description": {
-      "translate": false,
       "text": "Abre una bóveda de calamidad"
     },
-    "frame": "TASK",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true
   },

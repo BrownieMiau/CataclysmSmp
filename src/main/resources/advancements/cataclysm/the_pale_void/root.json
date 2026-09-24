@@ -4,16 +4,16 @@
       "id": "minecraft:soul_torch"
     },
     "title": {
-      "translate": false,
       "text": "El Vacío Pálido"
     },
     "description": {
-      "translate": false,
       "text": "Al final de todo, solo queda la palidez"
     },
-    "frame": "TASK",
+    "frame": "task",
     "show_toast": true,
-    "announce_to_chat": true
+    "announce_to_chat": true,
+    "background": "minecraft:textures/block/pale_moss_block.png",
+    "root": true
   },
   "criteria": {
     "impossible": {
@@ -26,5 +26,6 @@
     ]
   ],
   "background": "minecraft:textures/block/deepslate_tiles.png",
-  "root": true
+  "root": true,
+  "parent": "cataclysm:root"
 }

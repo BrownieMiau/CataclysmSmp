@@ -4,14 +4,12 @@
       "id": "minecraft:arcane_forge"
     },
     "title": {
-      "translate": false,
       "text": "Elthe"
     },
     "description": {
-      "translate": false,
       "text": "Reúne el set completo de herramientas arcanas"
     },
-    "frame": "TASK",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true
   },
