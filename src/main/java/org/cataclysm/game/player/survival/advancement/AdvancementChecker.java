@@ -100,6 +100,7 @@ public class AdvancementChecker {
         var advancements = new ArrayList<String>();
 
         for (var family : itemFamilies) {
+            if (family.getAdvancement() == null) continue;
             var advancementManager = new CataclysmAdvancement(family.getAdvancement());
             if (advancementManager.isDone(this.player)) continue;
 

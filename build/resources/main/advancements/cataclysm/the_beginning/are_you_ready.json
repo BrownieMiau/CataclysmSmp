@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:torch"
+    },
+    "title": {
+      "translate": false,
+      "text": "¿Estás Listo?"
+    },
+    "description": {
+      "translate": false,
+      "text": "Sobrevive tu primer día en el mundo"
+    },
+    "frame": "TASK",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "impossible"
+    ]
+  ],
+  "parent": "cataclysm:the_beginning/root"
+}

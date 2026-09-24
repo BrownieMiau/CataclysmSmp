@@ -1,0 +1,11 @@
+# Replace this with 'false' or 'true' depending if you are testing features on the server or not.
+testing: false
+# Replace this with your Discord bot token to enable the Discord integration.
+discord_token: ""
+# Replace all channel IDs with the ones you want to receive the messages.
+discord_broadcast_death: false
+discord_death_channel_id: ""
+discord_broadcast_totem: false
+discord_totem_channel_id: ""
+discord_broadcast_chat: false
+discord_chat_channel_id: ""

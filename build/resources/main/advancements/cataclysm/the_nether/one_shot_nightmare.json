@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:spectral_arrow"
+    },
+    "title": {
+      "translate": false,
+      "text": "Pesadilla de Un Disparo"
+    },
+    "description": {
+      "translate": false,
+      "text": "Recibe una flecha de la Pesadilla del Nether sin morir ni usar tótems"
+    },
+    "frame": "CHALLENGE",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "impossible"
+    ]
+  ],
+  "parent": "cataclysm:the_nether/viracocha"
+}

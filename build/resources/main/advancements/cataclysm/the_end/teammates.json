@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:name_tag"
+    },
+    "title": {
+      "translate": false,
+      "text": "Compañeros"
+    },
+    "description": {
+      "translate": false,
+      "text": "Reúne a tu escuadrón"
+    },
+    "frame": "CHALLENGE",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "impossible"
+    ]
+  ],
+  "parent": "cataclysm:the_end/the_boogeyman"
+}

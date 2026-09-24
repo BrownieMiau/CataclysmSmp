@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:beacon"
+    },
+    "title": {
+      "translate": false,
+      "text": "Inmortal"
+    },
+    "description": {
+      "translate": false,
+      "text": "Desafía a la muerte misma"
+    },
+    "frame": "CHALLENGE",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "impossible"
+    ]
+  ],
+  "parent": "cataclysm:the_pale_void/final_form"
+}

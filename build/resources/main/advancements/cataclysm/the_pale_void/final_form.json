@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:netherite_helmet"
+    },
+    "title": {
+      "translate": false,
+      "text": "Forma Final"
+    },
+    "description": {
+      "translate": false,
+      "text": "Reúne el set completo de armadura pálida"
+    },
+    "frame": "CHALLENGE",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "impossible"
+    ]
+  ],
+  "parent": "cataclysm:the_pale_void/pale_tools"
+}

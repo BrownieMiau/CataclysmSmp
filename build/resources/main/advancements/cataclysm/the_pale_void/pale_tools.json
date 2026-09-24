@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:bone"
+    },
+    "title": {
+      "translate": false,
+      "text": "Herramientas Pálidas"
+    },
+    "description": {
+      "translate": false,
+      "text": "Reúne el set completo de herramientas pálidas"
+    },
+    "frame": "TASK",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "impossible"
+    ]
+  ],
+  "parent": "cataclysm:the_pale_void/esne_paratus"
+}
