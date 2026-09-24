@@ -25,5 +25,6 @@
       "impossible"
     ]
   ],
-  "parent": "cataclysm:root"
+  "background": "minecraft:textures/block/deepslate_tiles.png",
+  "root": true
 }
