@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "minecraft:end_stone"
+      "item": "minecraft:end_stone"
     },
     "title": {
       "text": "Espejismo"

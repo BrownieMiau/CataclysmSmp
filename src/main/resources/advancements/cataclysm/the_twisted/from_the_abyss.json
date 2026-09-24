@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "minecraft:recovery_compass"
+      "item": "minecraft:recovery_compass"
     },
     "title": {
       "text": "Desde el Abismo"

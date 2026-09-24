@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "minecraft:beacon"
+      "item": "minecraft:beacon"
     },
     "title": {
       "text": "Inmortal"

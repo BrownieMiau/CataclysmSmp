@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "minecraft:diamond_pickaxe"
+      "item": "minecraft:diamond_pickaxe"
     },
     "title": {
       "text": "Te Sientes Retorcido"

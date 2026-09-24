@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "minecraft:llama_spawn_egg"
+      "item": "minecraft:llama_spawn_egg"
     },
     "title": {
       "text": "Viracocha"

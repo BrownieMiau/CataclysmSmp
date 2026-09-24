@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "minecraft:chest"
+      "item": "minecraft:chest"
     },
     "title": {
       "text": "La Avaricia Es Buena"

@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "minecraft:writable_book"
+      "item": "minecraft:writable_book"
     },
     "title": {
       "text": "Un Libro Abierto"

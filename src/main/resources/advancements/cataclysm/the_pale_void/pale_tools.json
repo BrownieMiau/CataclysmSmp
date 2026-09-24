@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "minecraft:bone"
+      "item": "minecraft:bone"
     },
     "title": {
       "text": "Herramientas Pálidas"

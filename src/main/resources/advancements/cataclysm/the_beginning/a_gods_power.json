@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "minecraft:enchanted_book"
+      "item": "minecraft:enchanted_book"
     },
     "title": {
       "text": "El Poder de un Dios"

@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "minecraft:ender_eye"
+      "item": "minecraft:ender_eye"
     },
     "title": {
       "text": "El End"
@@ -10,8 +10,8 @@
       "text": "Persigue a la bestia más allá del portal"
     },
     "frame": "task",
-    "show_toast": true,
-    "announce_to_chat": true,
+    "show_toast": false,
+    "announce_to_chat": false,
     "background": "minecraft:textures/block/end_stone.png",
     "root": true
   },
@@ -25,7 +25,5 @@
       "impossible"
     ]
   ],
-  "background": "minecraft:textures/block/deepslate_tiles.png",
-  "root": true,
   "parent": "cataclysm:root"
 }
