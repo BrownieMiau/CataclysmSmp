@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:compass"
+    },
+    "title": {
+      "translate": false,
+      "text": "Corredor del Laberinto"
+    },
+    "description": {
+      "translate": false,
+      "text": "Entra en el laberinto del End"
+    },
+    "frame": "TASK",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "impossible"
+    ]
+  ],
+  "parent": "cataclysm:the_end/root"
+}

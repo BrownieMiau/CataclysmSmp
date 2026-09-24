@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:blaze_powder"
+    },
+    "title": {
+      "translate": false,
+      "text": "A Mitad de Camino"
+    },
+    "description": {
+      "translate": false,
+      "text": "Fabrica una reliquia del Nether"
+    },
+    "frame": "TASK",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "impossible"
+    ]
+  ],
+  "parent": "cataclysm:the_nether/root"
+}

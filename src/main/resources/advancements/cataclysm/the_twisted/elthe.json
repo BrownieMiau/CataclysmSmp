@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:arcane_forge"
+    },
+    "title": {
+      "translate": false,
+      "text": "Elthe"
+    },
+    "description": {
+      "translate": false,
+      "text": "Reúne el set completo de herramientas arcanas"
+    },
+    "frame": "TASK",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "impossible"
+    ]
+  ],
+  "parent": "cataclysm:the_twisted/from_the_abyss"
+}

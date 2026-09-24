@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:gray_dye"
+    },
+    "title": {
+      "translate": false,
+      "text": "Esne Paratus"
+    },
+    "description": {
+      "translate": false,
+      "text": "Prepárate para lo inevitable"
+    },
+    "frame": "TASK",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "impossible"
+    ]
+  ],
+  "parent": "cataclysm:the_pale_void/root"
+}

@@ -49,7 +49,8 @@ public class AdvancementListener implements Listener {
             case "twisted_flesh" -> advancement = "the_twisted/twister";
         }
 
-        if (id.isEmpty()) return;
+        // Solo otorgar si se consumo un item con advancement asociado
+        if (advancement.isEmpty()) return;
         new CataclysmAdvancement(advancement).grant(player);
     }
 
@@ -64,6 +65,7 @@ public class AdvancementListener implements Listener {
         if (id == null) return;
 
         var player = killer.getPlayer();
+        if (player == null) return;
         if (id.contains("Twisted")) {
             new CataclysmAdvancement("the_twisted/twisted_reality").grant(player);
 
