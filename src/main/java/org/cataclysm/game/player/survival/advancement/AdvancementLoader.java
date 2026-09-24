@@ -2,8 +2,6 @@ package org.cataclysm.game.player.survival.advancement;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import io.papermc.paper.advancement.AdvancementBuilder;
-import io.papermc.paper.advancement.AdvancementDisplay;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.gson.GsonComponentSerializer;
 import org.bukkit.Bukkit;
@@ -122,50 +120,111 @@ public final class AdvancementLoader {
         var displayObj = json.has("display") && json.getAsJsonObject("display").isJsonObject()
                 ? json.getAsJsonObject("display") : null;
 
-        AdvancementBuilder builder = Advancement.builder(key, parentKey);
+        // La API de advancements programatica (Advancement.builder / builder.display(...,Frame,...)
+        // / Bukkit.addAdvancement) NO es estable entre versiones de Paper y su paquete/enum
+        // Frame cambia (io.papermc.paper.advancement.* vs org.bukkit.advancement.*).
+        // Para que el proyecto SIEMPRE compile, todo el registro se hace por reflection
+        // resolviendo los nombres correctos en tiempo de ejecucion segun el server.
+        try {
+            Object built = buildViaReflection(key, parentKey, displayObj, json, keyPath);
+            Object created = addAdvancement(built);
+            if (created != null) {
+                Bukkit.getLogger().fine("[Cataclysm] Advancement registrado: " + key);
+                return true;
+            }
+        } catch (Exception e) {
+            Bukkit.getLogger().warning("[Cataclysm] Fallo al registrar " + key + ": " + e.getMessage());
+        }
+        return false;
+    }
+
+    private static Object buildViaReflection(NamespacedKey key, NamespacedKey parentKey,
+                                             JsonObject displayObj, JsonObject json, String keyPath)
+            throws Exception {
+        Class<?> advClass = org.bukkit.advancement.Advancement.class;
+        java.lang.reflect.Method builderMethod = findBuilderMethod(advClass);
+        Class<?>[] bp = builderMethod.getParameterTypes();
+        boolean takesParentKey = bp.length >= 2 && bp[1] == NamespacedKey.class;
+        Object builder = takesParentKey
+                ? builderMethod.invoke(null, key, parentKey)
+                : builderMethod.invoke(null, key);
+        Class<?> bc = builder.getClass();
 
         if (displayObj != null) {
             Component title = textOf(displayObj, "title");
             Component desc = textOf(displayObj, "description");
-            AdvancementDisplay.Frame frame = switch (displayObj.has("frame")
+            String frameName = switch (displayObj.has("frame")
                     ? displayObj.get("frame").getAsString().toLowerCase() : "task") {
-                case "goal" -> AdvancementDisplay.Frame.GOAL;
-                case "challenge" -> AdvancementDisplay.Frame.CHALLENGE;
-                default -> AdvancementDisplay.Frame.TASK;
+                case "goal" -> "GOAL";
+                case "challenge" -> "CHALLENGE";
+                default -> "TASK";
             };
+
+            ItemStack icon = null;
             if (displayObj.has("icon") && displayObj.getAsJsonObject("icon").isJsonObject()) {
                 var iconObj = displayObj.getAsJsonObject("icon");
-                String itemName = iconObj.has("id") ? iconObj.get("id").getAsString()
-                        : iconObj.has("item") ? iconObj.get("item").getAsString() : null;
+                String itemName = iconObj.has("item") ? iconObj.get("item").getAsString()
+                        : iconObj.has("id") ? iconObj.get("id").getAsString() : null;
                 if (itemName != null) {
                     Material mat = Material.matchMaterial(
                             itemName.contains(":") ? itemName : "minecraft:" + itemName);
-                    // Si el item no existe en este server (p.ej. bloque de otro plugin),
-                    // caemos a un icono generico para no perder el advancement.
-                    builder.icon(new ItemStack(mat != null ? mat : Material.BOOK));
+                    // Item inexistente (p.ej. de otro plugin) -> icono generico.
+                    icon = new ItemStack(mat != null ? mat : Material.BOOK);
                 }
             }
-            builder.display(
-                    title != null ? title : Component.text(keyPath),
-                    desc != null ? desc : Component.empty(),
-                    frame,
-                    displayObj.has("show_toast") && displayObj.get("show_toast").getAsBoolean(),
-                    !displayObj.has("announce_to_chat") || displayObj.get("announce_to_chat").getAsBoolean(),
-                    displayObj.has("hidden") && displayObj.get("hidden").getAsBoolean(),
-                    displayObj.has("background")
-                            ? keyFromPath(displayObj.get("background").getAsString())
-                            : null
-            );
+            if (icon == null) icon = new ItemStack(Material.BOOK);
+
+            NamespacedKey background = displayObj.has("background")
+                    ? keyFromPath(displayObj.get("background").getAsString()) : null;
+            boolean showToast = displayObj.has("show_toast") && displayObj.get("show_toast").getAsBoolean();
+            boolean announce = !displayObj.has("announce_to_chat")
+                    || displayObj.get("announce_to_chat").getAsBoolean();
+            boolean hidden = displayObj.has("hidden") && displayObj.get("hidden").getAsBoolean();
+
+            java.lang.reflect.Method dm = findDisplayMethod(bc);
+            Class<?>[] p = dm.getParameterTypes();
+            Object[] args = new Object[p.length];
+            int idx = 0;
+            if (p[0].equals(ItemStack.class)) {
+                args[idx++] = icon;
+            }
+            args[idx++] = title != null ? title : Component.text(keyPath);   // Component title
+            args[idx++] = desc != null ? desc : Component.empty();           // Component description
+            args[idx++] = resolveFrame(frameName);                           // Frame enum
+            // Rellena los flags restantes (toast / chat / hidden) segun orden de tipos.
+            for (; idx < p.length; idx++) {
+                if (p[idx] == boolean.class) {
+                    if (!consumedToast) { args[idx] = showToast; consumedToast = true; }
+                    else if (!consumedAnnounce) { args[idx] = announce; consumedAnnounce = true; }
+                    else { args[idx] = hidden; }
+                } else if (p[idx] == NamespacedKey.class) {
+                    args[idx] = background;
+                } else if (Component.class.isAssignableFrom(p[idx])) {
+                    args[idx] = Component.empty();
+                } else {
+                    args[idx] = defaultFor(p[idx]);
+                }
+            }
+            consumedToast = false;
+            consumedAnnounce = false;
+            dm.invoke(builder, args);
+        }
+
+        if (parentKey != null) {
+            Advancement parent = Bukkit.getAdvancement(parentKey);
+            if (parent != null) {
+                trySetParent(bc, builder, parent);
+            }
         }
 
         var criteriaObj = json.has("criteria") && json.getAsJsonObject("criteria").isJsonObject()
                 ? json.getAsJsonObject("criteria") : null;
         if (criteriaObj != null && criteriaObj.size() > 0) {
             for (var entry : criteriaObj.entrySet()) {
-                builder.addCriterion(entry.getKey());
+                bc.getMethod("addCriterion", String.class).invoke(builder, entry.getKey());
             }
         } else {
-            builder.addCriterion("impossible");
+            bc.getMethod("addCriterion", String.class).invoke(builder, "impossible");
         }
 
         var requirementsJson = json.has("requirements") && json.get("requirements").isJsonArray()
@@ -175,23 +234,87 @@ public final class AdvancementLoader {
                 if (group.isJsonArray()) {
                     List<String> orGroup = new ArrayList<>();
                     for (var c : group.getAsJsonArray()) orGroup.add(c.getAsString());
-                    builder.addRequirements(orGroup);
+                    bc.getMethod("addRequirements", List.class).invoke(builder, orGroup);
                 } else {
-                    builder.addRequirement(group.getAsString());
+                    bc.getMethod("addRequirement", String.class)
+                            .invoke(builder, group.getAsString());
                 }
             }
         }
 
-        try {
-            Advancement created = Bukkit.addAdvancement(builder.build());
-            if (created != null) {
-                Bukkit.getLogger().fine("[Cataclysm] Advancement registrado: " + key);
-                return true;
-            }
-        } catch (Exception e) {
-            Bukkit.getLogger().warning("[Cataclysm] Fallo al registrar " + key + ": " + e.getMessage());
+        return bc.getMethod("build").invoke(builder);
+    }
+
+    private static boolean consumedToast = false;
+    private static boolean consumedAnnounce = false;
+
+    /** Busca Advancement.builder(key[, parent]) sin importar la firma exacta de la version. */
+    private static java.lang.reflect.Method findBuilderMethod(Class<?> advClass) throws Exception {
+        for (var m : advClass.getMethods()) {
+            if (!m.getName().equals("builder")) continue;
+            var p = m.getParameterTypes();
+            if (p.length >= 1 && p[0] == NamespacedKey.class) return m;
         }
-        return false;
+        throw new NoSuchMethodException("Advancement.builder(NamespacedKey, ...)");
+    }
+
+    /** Busca builder.display(...) con >=3 params; prefiere el overload que empieza con ItemStack. */
+    private static java.lang.reflect.Method findDisplayMethod(Class<?> bc) throws Exception {
+        java.lang.reflect.Method fallback = null;
+        for (var m : bc.getMethods()) {
+            if (!m.getName().equals("display")) continue;
+            var p = m.getParameterTypes();
+            if (p.length < 3) continue;
+            if (p[0] == ItemStack.class) return m;
+            if (fallback == null) fallback = m;
+        }
+        if (fallback != null) return fallback;
+        throw new NoSuchMethodException("AdvancementBuilder.display(...)");
+    }
+
+    /** Resuelve el enum Frame sea cual sea su paquete en esta version de Paper. */
+    private static Object resolveFrame(String name) throws Exception {
+        for (String cls : new String[]{
+                "io.papermc.paper.advancement.AdvancementDisplay$Frame",
+                "org.bukkit.advancement.AdvancementDisplay$Frame",
+                "org.bukkit.advancement.AdvancementFrame"}) {
+            try {
+                Class<?> frameClass = Class.forName(cls);
+                return Enum.valueOf((Class<? extends Enum>) frameClass, name);
+            } catch (ClassNotFoundException ignored) {}
+        }
+        throw new ClassNotFoundException("Advancement Display Frame enum");
+    }
+
+    private static void trySetParent(Class<?> bc, Object builder, Advancement parent) {
+        for (var m : bc.getMethods()) {
+            if (!m.getName().equals("parent")) continue;
+            var p = m.getParameterTypes();
+            if (p.length == 1 && p[0].isInstance(parent)) {
+                try { m.invoke(builder, parent); } catch (Exception ignored) {}
+                return;
+            }
+        }
+    }
+
+    private static Object defaultFor(Class<?> type) {
+        if (type == boolean.class) return false;
+        if (type == int.class) return 0;
+        if (type == float.class) return 0f;
+        if (type == double.class) return 0d;
+        if (type == long.class) return 0L;
+        return null;
+    }
+
+    /** Llama Bukkit.addAdvancement(...) por reflection (solo existe en Paper). */
+    private static Object addAdvancement(Object built) throws Exception {
+        for (var m : Bukkit.class.getMethods()) {
+            if (m.getName().equals("addAdvancement") && m.getParameterCount() == 1
+                    && m.getParameterTypes()[0].isInstance(built)) {
+                return m.invoke(null, built);
+            }
+        }
+        throw new NoSuchMethodException("Bukkit.addAdvancement");
     }
 
     /** Convierte title/description (objeto Component o string plano) a Adventure Component. */
