@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:elytra"
+    },
+    "title": {
+      "translate": false,
+      "text": "Hasta el Infinito y Más Allá"
+    },
+    "description": {
+      "translate": false,
+      "text": "Obtén las Élitros del Espejismo"
+    },
+    "frame": "CHALLENGE",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "impossible"
+    ]
+  ],
+  "parent": "cataclysm:the_end/mirage"
+}

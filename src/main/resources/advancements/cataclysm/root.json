@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:book"
+    },
+    "title": {
+      "translate": false,
+      "text": "Cataclysm"
+    },
+    "description": {
+      "translate": false,
+      "text": "Bienvenido a Cataclysm"
+    },
+    "frame": "TASK",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "impossible"
+    ]
+  ],
+  "background": "minecraft:textures/block/deepslate_tiles.png"
+}

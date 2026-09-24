@@ -16,7 +16,11 @@ public class CataclysmAdvancement {
             var advancementKey = new NamespacedKey("cataclysm", this.key);
             var advancement = Bukkit.getAdvancement(advancementKey);
 
-            if (advancement == null) return;
+            if (advancement == null) {
+                Bukkit.getLogger().warning("[Cataclysm] Advancement no encontrado: " + advancementKey
+                        + " (falta el JSON en data/advancements/cataclysm o el plugin no lo registro)");
+                return;
+            }
 
             var progress = player.getAdvancementProgress(advancement);
             if (progress.isDone()) return;
