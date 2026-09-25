@@ -1,6 +1,10 @@
 {
   "pack": {
+    "description": "Cataclysm advancements (namespace cataclysm)",
     "pack_format": 71,
-    "description": "Cataclysm advancements (namespace cataclysm)"
+    "supported_formats": {
+      "min_inclusive": 25,
+      "max_inclusive": 999
+    }
   }
 }
